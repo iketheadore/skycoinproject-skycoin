@@ -2,9 +2,9 @@
 
 # Skycoin
 
-[![Build Status](https://travis-ci.com/skycoin/skycoin.svg)](https://travis-ci.com/skycoin/skycoin)
-[![GoDoc](https://godoc.org/github.com/skycoin/skycoin?status.svg)](https://godoc.org/github.com/skycoin/skycoin)
-[![Go Report Card](https://goreportcard.com/badge/github.com/skycoin/skycoin)](https://goreportcard.com/report/github.com/skycoin/skycoin)
+[![Build Status](https://travis-ci.com/SkycoinProject/skycoin.svg)](https://travis-ci.com/SkycoinProject/skycoin)
+[![GoDoc](https://godoc.org/github.com/SkycoinProject/skycoin?status.svg)](https://godoc.org/github.com/SkycoinProject/skycoin)
+[![Go Report Card](https://goreportcard.com/badge/github.com/SkycoinProject/skycoin)](https://goreportcard.com/report/github.com/SkycoinProject/skycoin)
 
 Skycoin is a next-generation cryptocurrency.
 
@@ -33,12 +33,11 @@ scratch, to remedy the rough edges in the Bitcoin design.
 
 ## Links
 
-* [skycoin.net](https://www.skycoin.net)
-* [Skycoin Blog](https://www.skycoin.net/blog)
-* [Skycoin Docs](https://www.skycoin.net/docs)
-* [Skycoin Blockchain Explorer](https://explorer.skycoin.net)
-* [Skycoin Development Telegram Channel](https://t.me/skycoindev)
-* [Skycoin Github Wiki](https://github.com/skycoin/skycoin/wiki)
+* [skycoin.com](https://www.skycoin.com)
+* [Skycoin Blog](https://www.skycoin.com/blog)
+* [Skycoin Docs](https://www.skycoin.com/docs)
+* [Skycoin Blockchain Explorer](https://explorer.skycoin.com)
+* [Skycoin Github Wiki](https://github.com/SkycoinProject/skycoin/wiki)
 
 ## Table of Contents
 
@@ -114,25 +113,25 @@ Skycoin supports go1.10+.
 ### Go get skycoin
 
 ```sh
-$ go get github.com/skycoin/skycoin/cmd/...
+$ go get github.com/SkycoinProject/skycoin/cmd/...
 ```
 
-This will download `github.com/skycoin/skycoin` to `$GOPATH/src/github.com/skycoin/skycoin`.
+This will download `github.com/SkycoinProject/skycoin` to `$GOPATH/src/github.com/SkycoinProject/skycoin`.
 
-You can also clone the repo directly with `git clone https://github.com/skycoin/skycoin`,
-but it must be cloned to this path: `$GOPATH/src/github.com/skycoin/skycoin`.
+You can also clone the repo directly with `git clone https://github.com/SkycoinProject/skycoin`,
+but it must be cloned to this path: `$GOPATH/src/github.com/SkycoinProject/skycoin`.
 
 ### Run Skycoin from the command line
 
 ```sh
-$ cd $GOPATH/src/github.com/skycoin/skycoin
+$ cd $GOPATH/src/github.com/SkycoinProject/skycoin
 $ make run-client
 ```
 
 ### Show Skycoin node options
 
 ```sh
-$ cd $GOPATH/src/github.com/skycoin/skycoin
+$ cd $GOPATH/src/github.com/SkycoinProject/skycoin
 $ make run-help
 ```
 
@@ -141,7 +140,7 @@ $ make run-help
 Example:
 
 ```sh
-$ cd $GOPATH/src/github.com/skycoin/skycoin
+$ cd $GOPATH/src/github.com/SkycoinProject/skycoin
 $ make ARGS="--launch-browser=false -data-dir=/custom/path" run
 ```
 
@@ -157,7 +156,7 @@ $ docker run -ti --rm \
     -v skycoin-wallet:/wallet \
     -p 6000:6000 \
     -p 6420:6420 \
-    skycoin/skycoin
+    SkycoinProject/skycoin
 ```
 
 This image has a `skycoin` user for the skycoin daemon to run, with UID and GID 10000.
@@ -170,7 +169,7 @@ by just appending flags at the end of the `docker run` command. The following
 example will show you the available options.
 
 ```sh
-$ docker run --rm skycoin/skycoin -help
+$ docker run --rm SkycoinProject/skycoin -help
 ```
 
 Access the dashboard: [http://localhost:6420](http://localhost:6420).
@@ -211,7 +210,7 @@ and useful tools included in `skycoin/skycoindev-cli`.
 ## Contributing a node to the network
 
 Add your node's `ip:port` to the [peers.txt](peers.txt) file.
-This file will be periodically uploaded to https://downloads.skycoin.net/blockchain/peers.txt
+This file will be periodically uploaded to https://downloads.skycoin.com/blockchain/peers.txt
 and used to seed client with peers.
 
 *Note*: Do not add Skywire nodes to `peers.txt`.
@@ -244,7 +243,7 @@ However, do not use this URI in QR codes displayed to the user, because the addr
 
 ## Wire protocol user agent
 
-[Wire protocol user agent description](https://github.com/skycoin/skycoin/wiki/Wire-protocol-user-agent)
+[Wire protocol user agent description](https://github.com/SkycoinProject/skycoin/wiki/Wire-protocol-user-agent)
 
 ## Development
 
@@ -284,7 +283,7 @@ Skycoin implements client libraries which export core functionality for usage fr
 other programming languages.
 
 * [libskycoin C client library and SWIG interface](https://github.com/skycoin/libskycoin)
-* [skycoin-lite: Javascript and mobile bindings](https://github.com/skycoin/skycoin-lite)
+* [skycoin-lite: Javascript and mobile bindings](https://github.com/SkycoinProject/skycoin-lite)
 
 ### Running Tests
 
@@ -669,71 +668,9 @@ Performs these actions before releasing:
     * Load a test wallet with nonzero balance from seed to confirm wallet loading works
     * Send coins to another wallet to confirm spending works
     * Restart the client, confirm that it reloads properly
-* For both the Android and iOS mobile wallets, configure the node url to be https://staging.node.skycoin.net
+* For both the Android and iOS mobile wallets, configure the node url to be https://staging.node.skycoin.com
   and test all operations to ensure it will work with the new node version.
 
 #### Creating release builds
 
 [Create Release builds](electron/README.md).
-
-#### Release signing
-
-Releases are signed with this PGP key:
-
-`0x5801631BD27C7874`
-
-The fingerprint for this key is:
-
-```
-pub   ed25519 2017-09-01 [SC] [expires: 2023-03-18]
-      10A7 22B7 6F2F FE7B D238  0222 5801 631B D27C 7874
-uid                      GZ-C SKYCOIN <token@protonmail.com>
-sub   cv25519 2017-09-01 [E] [expires: 2023-03-18]
-```
-
-Keybase.io account: https://keybase.io/gzc
-
-Follow the [Tor Project's instructions for verifying signatures](https://www.torproject.org/docs/verifying-signatures.html.en).
-
-If you can't or don't want to import the keys from a keyserver, the signing key is available in the repo: [gz-c.asc](gz-c.asc).
-
-Releases and their signatures can be found on the [releases page](https://github.com/skycoin/skycoin/releases).
-
-Instructions for generating a PGP key, publishing it, signing the tags and binaries:
-https://gist.github.com/gz-c/de3f9c43343b2f1a27c640fe529b067c
-
-## Responsible Disclosure
-
-Security flaws in skycoin source or infrastructure can be sent to security@skycoin.net.
-Bounties are available for accepted critical bug reports.
-
-PGP Key for signing:
-
-```
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-mDMEWaj46RYJKwYBBAHaRw8BAQdApB44Kgde4Kiax3M9Ta+QbzKQQPoUHYP51fhN
-1XTSbRi0I0daLUMgU0tZQ09JTiA8dG9rZW5AcHJvdG9ubWFpbC5jb20+iJYEExYK
-AD4CGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AWIQQQpyK3by/+e9I4AiJYAWMb
-0nx4dAUCWq/TNwUJCmzbzgAKCRBYAWMb0nx4dKzqAP4tKJIk1vV2bO60nYdEuFB8
-FAgb5ITlkj9PyoXcunETVAEAhigo4miyE/nmE9JT3Q/ZAB40YXS6w3hWSl3YOF1P
-VQq4OARZqPjpEgorBgEEAZdVAQUBAQdAa8NkEMxo0dr2x9PlNjTZ6/gGwhaf5OEG
-t2sLnPtYxlcDAQgHiH4EGBYKACYCGwwWIQQQpyK3by/+e9I4AiJYAWMb0nx4dAUC
-Wq/TTQUJCmzb5AAKCRBYAWMb0nx4dFPAAQD7otGsKbV70UopH+Xdq0CDTzWRbaGw
-FAoZLIZRcFv8zwD/Z3i9NjKJ8+LS5oc8rn8yNx8xRS+8iXKQq55bDmz7Igw=
-=5fwW
------END PGP PUBLIC KEY BLOCK-----
-```
-
-Key ID: [0x5801631BD27C7874](https://pgp.mit.edu/pks/lookup?search=0x5801631BD27C7874&op=index)
-
-The fingerprint for this key is:
-
-```
-pub   ed25519 2017-09-01 [SC] [expires: 2023-03-18]
-      10A7 22B7 6F2F FE7B D238  0222 5801 631B D27C 7874
-uid                      GZ-C SKYCOIN <token@protonmail.com>
-sub   cv25519 2017-09-01 [E] [expires: 2023-03-18]
-```
-
-Keybase.io account: https://keybase.io/gzc
