@@ -8,8 +8,8 @@ import (
 
 	"github.com/skycoin/skycoin/src/cipher"
 	"github.com/skycoin/skycoin/src/cipher/bip39"
-	"github.com/skycoin/skycoin/src/wallet"
 	"github.com/skycoin/skycoin/src/util/logging"
+	"github.com/skycoin/skycoin/src/wallet"
 )
 
 // Note: Address_gen generates public keys and addresses
@@ -21,7 +21,6 @@ import (
 // -json for json output
 // -add option to password the secret key
 // -let people add the key from the command line
-
 
 func main() {
 	logging.Disable()
