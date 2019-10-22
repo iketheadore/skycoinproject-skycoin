@@ -15,12 +15,14 @@ import (
 	"github.com/SkycoinProject/skycoin/src/cipher/encoder"
 )
 
+// Build represents the build file info
 type Build struct {
 	Name string `json:"name"`
 	Hash string `json:"hash"`
 	Size int64  `json:"size"`
 }
 
+// Release represents the release info
 type Release struct {
 	Version string  `json:"version"`
 	Date    string  `json:"date"`
@@ -28,6 +30,7 @@ type Release struct {
 	Count   int64   `json:"count"` // count of builds
 }
 
+// Manifest file struct
 type Manifest struct {
 	Release     Release `json:"release"`
 	Note        string  `json:"note"`
@@ -69,7 +72,7 @@ func main() {
 	// geneate sha256 hash of each build and sign the hashes.
 	if *sign {
 		if *seckeyStr == "" {
-			fmt.Fprintf(os.Stderr, "seckey is requried for signing, set it with -seckey flag")
+			fmt.Fprintf(os.Stderr, "seckey is required for signing, set it with -seckey flag")
 			return
 		}
 
@@ -101,7 +104,7 @@ func main() {
 
 	if *verify {
 		if *pubkeyStr == "" {
-			fmt.Fprintln(os.Stderr, "pubkey is requred for verifying, set it with -pubkey flag")
+			fmt.Fprintln(os.Stderr, "pubkey is required for verifying, set it with -pubkey flag")
 			return
 		}
 		pk, err := cipher.PubKeyFromHex(*pubkeyStr)
