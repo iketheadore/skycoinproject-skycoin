@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/SkycoinProject/skycoin/src/cipher"
-	"github.com/rencatoken/rnc/src/cipher/encoder"
+	"github.com/SkycoinProject/skycoin/src/cipher/encoder"
 )
 
 type Build struct {
@@ -59,7 +59,7 @@ func main() {
 	note := flag.String("note", "", "note as salt, could be the sha256 of the last manifest file")
 
 	flag.Usage = func() {
-		fmt.Printf(preUsage, os.Args[0], os.Args[0], os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), preUsage, os.Args[0], os.Args[0], os.Args[0])
 		fmt.Fprintf(flag.CommandLine.Output(), "Commands:\n\n")
 		flag.PrintDefaults()
 	}
