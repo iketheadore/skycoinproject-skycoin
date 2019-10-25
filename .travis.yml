@@ -13,6 +13,10 @@ matrix:
       if: type != pull_request
       osx_image: xcode8
       env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    - os: windows
+    #   env:
+    #   - GOPATH='c:\gopath'
+    #   - GOX_OUTPUT='.gox_output'
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
@@ -70,7 +74,8 @@ script:
   - make test-ui
   - make test-ui-e2e
   # Build wallets
-  - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
+#   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
+  - ./ci-scripts/build-wallet.sh
 
 notifications:
   email:
