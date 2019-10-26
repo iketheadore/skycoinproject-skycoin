@@ -50,11 +50,11 @@ install:
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
   # Install make tool if windows
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
-  - make install-linters
-  - nvm install 8.11.0
-  - nvm use 8.11.0
-  - make install-deps-ui
+#   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
+#   - make install-linters
+#   - nvm install 8.11.0
+#   - nvm use 8.11.0
+#   - make install-deps-ui
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
