@@ -14,9 +14,9 @@ matrix:
       osx_image: xcode8
       env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
     - os: windows
-    #   env:
-    #   - GOPATH='c:\gopath'
-    #   - GOX_OUTPUT='.gox_output'
+      env:
+      - GOPATH='c:\gopath'
+      - GOX_OUTPUT='.gox_output'
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
@@ -47,7 +47,7 @@ install:
   - go get github.com/gz-c/gox
   # Install dependences for building wallet
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev && nvm install 8; fi
-  - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/skycoin; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
+  - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
   - make install-linters
