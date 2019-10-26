@@ -50,6 +50,8 @@ install:
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
+  # Install make tool if windows
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
   - make install-linters
   # Install pinned golangci-lint, overriding the latest version install by make install-linters
   - VERSION=1.17.0 ./ci-scripts/install-golangci-lint.sh
