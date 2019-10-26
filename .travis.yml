@@ -51,10 +51,10 @@ install:
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
   # Install make tool if windows
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make && choco install nvm; fi
   - make install-linters
   # Install pinned golangci-lint, overriding the latest version install by make install-linters
-  - VERSION=1.17.0 ./ci-scripts/install-golangci-lint.sh
+#   - VERSION=1.17.0 ./ci-scripts/install-golangci-lint.sh
   - nvm install 8.11.0
   - nvm use 8.11.0
   - make install-deps-ui
