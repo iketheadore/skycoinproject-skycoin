@@ -74,7 +74,9 @@ script:
 #   - make test-ui-e2e
   # Build wallets
 #   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
-  - ./ci-scripts/build-wallet.sh
+#   - ./ci-scripts/build-wallet.sh
+    - cd electron && ./build.sh 'windows/amd64 windows/386'
+
 
 notifications:
   email:
