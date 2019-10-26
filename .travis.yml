@@ -6,13 +6,13 @@ go:
 
 matrix:
   include:
-    - os: linux
-      env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
-    - os: osx
-      # Do not start osx build for PR
-      if: type != pull_request
-      osx_image: xcode8
-      env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    # - os: linux
+    #   env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
+    # - os: osx
+    #   # Do not start osx build for PR
+    #   if: type != pull_request
+    #   osx_image: xcode8
+    #   env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
     - os: windows
       env:
       - GOPATH='c:\gopath'
@@ -51,7 +51,7 @@ install:
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
   # Install make tool if windows
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make && choco install nvm && refreshenv; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make && choco install nvm && echo $PATH; fi
   - make install-linters
   # Install pinned golangci-lint, overriding the latest version install by make install-linters
 #   - VERSION=1.17.0 ./ci-scripts/install-golangci-lint.sh
