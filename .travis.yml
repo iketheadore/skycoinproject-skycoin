@@ -16,7 +16,7 @@ matrix:
     - os: windows
       env:
       - GOX_OUTPUT='.gox_output'
-      - PATH='/c/Program Files/nodejs:${PATH}'
+    #   - PATH='/c/Program Files/nodejs:${PATH}'
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
@@ -76,9 +76,8 @@ script:
 #   - make test-ui
 #   - make test-ui-e2e
   # Build wallets
+    - ./ci-scripts/build-wallet.sh
 #   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
-  - bash -c 'echo $PATH'
-  - bash -c 'npm -v'
 #   - PowerShell -Command sh ./ci-scripts/build-wallet.sh
     # - cd electron && ./build.sh 'windows/amd64 windows/386'
 
