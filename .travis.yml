@@ -77,7 +77,7 @@ script:
   # Build wallets
 #   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
   - npm -v
-  - PowerShell -Command sh ./ci-scripts/build-wallet.sh
+#   - PowerShell -Command sh ./ci-scripts/build-wallet.sh
     # - cd electron && ./build.sh 'windows/amd64 windows/386'
 
 
