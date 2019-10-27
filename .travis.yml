@@ -48,7 +48,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev && nvm install 8; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install nodejs.install --version=8.11.0 -y; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install nodejs --version=8.11.0 -y; fi
 #   - go get -t ./...
 #   - powershell Install-Product node 8 x64
   # Install make tool if windows
