@@ -21,6 +21,7 @@
 .PHONY: install-deps-ui build-ui build-ui-travis help newcoin merge-coverage
 .PHONY: generate update-golden-files
 .PHONY: fuzz-base58 fuzz-encoder
+.PHONY: install-nvm
 
 COIN ?= skycoin
 
@@ -142,6 +143,9 @@ install-linters: ## Install linters
 	# Change to use go get -u with version when go is v1.12+
 	# echo "run go env GOPATH" $(go env GOPATH)
 	# curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s -- -b $(go env GOPATH)/bin v1.18.0
+install-nvm: ## Install nvm for windows
+	choco install nvm
+	cp /c/ProgramData/nvm/settings.txt /c/
 
 format: ## Formats the code. Must have goimports installed (use make install-linters).
 	goimports -w -local github.com/SkycoinProject/skycoin ./cmd
