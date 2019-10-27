@@ -49,7 +49,7 @@ install:
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - go get -t ./...
-  - ps: Install-Product node 8 x64
+  - powershell Install-Product node 8 x64
   # Install make tool if windows
 #   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
 #   - make install-linters
