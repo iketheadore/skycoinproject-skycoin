@@ -59,20 +59,18 @@ services:
   - xvfb
 
 script:
-    - make check-newcoin
-    - make lint
-    - make test-386
-    - make test-amd64
-    - make integration-tests-stable
-    - make lint-ui
-    - make build-ui-travis
-    - make test-ui
-    - make test-ui-e2e
-  # Build wallets
-    - ./ci-scripts/build-wallet.sh
-#   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
-#   - PowerShell -Command sh ./ci-scripts/build-wallet.sh
-    # - cd electron && ./build.sh 'windows/amd64 windows/386'
+    # - make check-newcoin
+    # - make lint
+    # - make test-386
+    # - make test-amd64
+    # - make integration-tests-stable
+    # - make lint-ui
+    # - make build-ui-travis
+    # - make test-ui
+    # - make test-ui-e2e
+    # # Build wallets
+    # - ./ci-scripts/build-wallet.sh
+    - ./ci-scripts/run-script.sh
 
 
 notifications:
