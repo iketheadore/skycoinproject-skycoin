@@ -48,34 +48,26 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
-  - ./ci-scripts/install-nodejs.sh
-#   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ci-scripts/install-win-tools.sh; fi
-#   - go get -t ./...
-  # Install make tool if windows
-#   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install make; fi
-#   - make install-linters
-#   - nvm install 8.11.0
-#   - nvm use 8.11.0
-#   - make install-deps-ui
+  - ./ci-scripts/install-tools.sh
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
-  # Source the ~/.bashrc to update the PATH
+  # Source the ~/.bashrc to update the PATH for windows
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then source $HOME/.bashrc; fi
 
-# services:
-#   - xvfb
+services:
+  - xvfb
 
 script:
-#   - make check-newcoin
-#   - make lint
-#   - make test-386
-#   - make test-amd64
-#   - make integration-tests-stable
-#   - make lint-ui
-#   - make build-ui-travis
-#   - make test-ui
-#   - make test-ui-e2e
+    - make check-newcoin
+    - make lint
+    - make test-386
+    - make test-amd64
+    - make integration-tests-stable
+    - make lint-ui
+    - make build-ui-travis
+    - make test-ui
+    - make test-ui-e2e
   # Build wallets
     - ./ci-scripts/build-wallet.sh
 #   - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
