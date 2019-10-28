@@ -7,9 +7,6 @@ if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     # Install nodejs with choco
     choco install nodejs --version=8.11.0 -y
     echo 'export PATH="/c/Program Files/nodejs:${PATH}";' >> ~/.bashrc
-
-    # Install make with choco
-    choco install make
 else
     source ~/.nvm/nvm.sh
     make install-linters
