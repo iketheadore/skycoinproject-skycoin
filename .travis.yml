@@ -18,9 +18,6 @@ matrix:
       - GOX_OUTPUT='.gox_output'
     #   - PATH='/c/Program Files/nodejs:${PATH}'
 
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
-
 env:
   global:
     - ELECTRON_CACHE: $HOME/.cache/electron
@@ -42,6 +39,9 @@ cache:
 addons:
   chrome: stable
 
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
+
 install:
   # Install gox
   - go get github.com/gz-c/gox
@@ -61,6 +61,7 @@ install:
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then source $HOME/.bashrc; fi
 
 # services:
 #   - xvfb
