@@ -8,12 +8,14 @@ matrix:
   include:
     - os: linux
       env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
-    # - os: osx
-    #   # Do not start osx build for PR
-    #   if: type != pull_request
-    #   osx_image: xcode8
-    #   env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    - os: osx
+      # Do not start osx build for PR
+      if: type != pull_request
+      osx_image: xcode8
+      env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
     - os: windows
+      #  Do not start windows build for PR
+      if: type != pull_request
       env:
       - GOX_OUTPUT='.gox_output'
 
@@ -59,17 +61,6 @@ services:
   - xvfb
 
 script:
-    # - make check-newcoin
-    # - make lint
-    # - make test-386
-    # - make test-amd64
-    # - make integration-tests-stable
-    # - make lint-ui
-    # - make build-ui-travis
-    # - make test-ui
-    # - make test-ui-e2e
-    # # Build wallets
-    # - ./ci-scripts/build-wallet.sh
     - ./ci-scripts/run-script.sh
 
 

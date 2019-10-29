@@ -12,6 +12,6 @@ if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then
     make test-ui-e2e
 fi
 
-# if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then
-./ci-scripts/build-wallet.sh
-# fi
+if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then
+    ./ci-scripts/build-wallet.sh
+fi
