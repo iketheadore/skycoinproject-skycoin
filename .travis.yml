@@ -61,7 +61,6 @@ services:
   - xvfb
 
 script:
-    - VERSION=1.18.0 ./ci-scripts/install-golangci-lint.sh
     - ./ci-scripts/run-script.sh
 
 
