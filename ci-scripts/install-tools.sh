@@ -11,6 +11,6 @@ else
     source ~/.nvm/nvm.sh
     nvm install 8.11.0
     nvm use 8.11.0
-    make install-linters
+    # make install-linters
     make install-deps-ui
 fi
