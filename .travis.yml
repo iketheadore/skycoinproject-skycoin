@@ -42,7 +42,6 @@ addons:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
-  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then source ~/.nvm/nvm.sh;fi
 
 install:
   # Install gox
@@ -51,7 +50,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
-  - ./ci-scripts/install-tools.sh
+  - bash ./ci-scripts/install-tools.sh
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
