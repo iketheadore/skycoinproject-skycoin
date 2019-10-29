@@ -8,6 +8,7 @@ if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     choco install nodejs --version=8.11.0 -y
     echo 'export PATH="/c/Program Files/nodejs:${PATH}";' >> ~/.bashrc
 else
+    ls ~/.nvm
     source $HOME/.nvm/nvm.sh
     nvm install 8.11.0
     nvm use 8.11.0
