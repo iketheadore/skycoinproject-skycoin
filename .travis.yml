@@ -6,18 +6,18 @@ go:
 
 matrix:
   include:
-    - os: linux
-      env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
+    # - os: linux
+    #   env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
     - os: osx
       # Do not start osx build for PR
       if: type != pull_request
       osx_image: xcode8
       env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
-    - os: windows
-      #  Do not start windows build for PR
-      if: type != pull_request
-      env:
-      - GOX_OUTPUT='.gox_output'
+    # - os: windows
+    #   #  Do not start windows build for PR
+    #   if: type != pull_request
+    #   env:
+    #   - GOX_OUTPUT='.gox_output'
 
 env:
   global:
@@ -50,7 +50,8 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
-  - bash ./ci-scripts/install-tools.sh
+  - which nvm
+  - ./ci-scripts/install-tools.sh
 
 before_script:
   - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
