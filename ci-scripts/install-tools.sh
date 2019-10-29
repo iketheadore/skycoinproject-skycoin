@@ -9,8 +9,8 @@ if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
     echo 'export PATH="/c/Program Files/nodejs:${PATH}";' >> ~/.bashrc
 else
     source ~/.nvm/nvm.sh
-    make install-linters
     nvm install 8.11.0
     nvm use 8.11.0
+    make install-linters
     make install-deps-ui
 fi
