@@ -53,23 +53,17 @@ install:
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then nvm install 8.11.0 && nvm use 8.11.0; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ci-scripts/install-nodejs-win.sh; fi
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then make install-linters && make install-deps-ui; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ci-scripts/install-nodejs-win.sh; fi
 
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" && "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/add-key.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ./ci-scripts/add-key.sh; fi
   # Source the ~/.bashrc to update the PATH for windows
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then source $HOME/.bashrc; fi
 
 script:
-    - ./ci-scripts/run-script.sh
-
-
-notifications:
-  email:
-    - travis@skycoin.com
-  # https://github.com/kvld/travisci-telegram TravisCI Telegram Bot integration
-  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+  - if [[ "$TRAVIS_OS_NAME" != "windows"]]; then ./ci-scripts/lint-and-test.sh; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
   provider: s3
@@ -84,3 +78,9 @@ deploy:
   on:
     repo: SkycoinProject/skycoin
     tags: true
+
+notifications:
+  email:
+    - travis@skycoin.com
+  # https://github.com/kvld/travisci-telegram TravisCI Telegram Bot integration
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
