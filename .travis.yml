@@ -63,7 +63,7 @@ before_script:
 
 script:
 #   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then ./ci-scripts/lint-and-test.sh; fi
-  - if [[ "$TRAVIS_PULL_REQUEST" == false ]]; then ./ci-scripts/build-wallet.sh; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == false && "$TRAVIS_BRANCH" =~ ^(master|develop)$ ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
   provider: s3
