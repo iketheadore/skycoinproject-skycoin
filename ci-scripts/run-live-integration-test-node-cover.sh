@@ -21,7 +21,7 @@ if [ -f "${COVERAGEFILE}" ]; then
     rm "${COVERAGEFILE}"
 fi
 
-go test -c -ldflags "-X ${CMDPKG}.Commit=$COMMIT -X ${CMDPKG}.Branch=${BRANCH}" -tags testrunmain -o "${BINARY}" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
+go test -mod=vendor -c -ldflags "-X ${CMDPKG}.Commit=$COMMIT -X ${CMDPKG}.Branch=${BRANCH}" -tags testrunmain -o "${BINARY}" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
 
 ./${BINARY} \
     -gui-dir="${DIR}/src/gui/static/" \

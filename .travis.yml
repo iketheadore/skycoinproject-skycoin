@@ -20,9 +20,9 @@ matrix:
       if: type != pull_request
       env:
       - GOX_OUTPUT='.gox_output'
-
 env:
   global:
+    - GO111MODULE: 'on'
     - ELECTRON_CACHE: $HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
     - BUILD_DIR: build

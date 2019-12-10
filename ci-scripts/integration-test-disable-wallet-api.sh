@@ -61,8 +61,8 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GOLDFLAGS="-X ${CMDPKG}.Commit=${COMMIT} -X ${CMDPKG}.Branch=${BRANCH}"
 
 echo "checking if integration tests compile"
-go test ./src/api/integration/...
-go test ./src/cli/integration/...
+go test -mod=vendor ./src/api/integration/...
+go test -mod=vendor ./src/cli/integration/...
 
 DATA_DIR=$(mktemp -d -t ${COIN}-data-dir.XXXXXX)
 WALLET_DIR="${DATA_DIR}/wallets"
@@ -75,7 +75,7 @@ fi
 # Compile the skycoin node
 # We can't use "go run" because that creates two processes which doesn't allow us to kill it at the end
 echo "compiling $COIN with coverage"
-go test -c -ldflags "${GOLDFLAGS}" -tags testrunmain -o "$BINARY" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
+go test -mod=vendor -c -ldflags "${GOLDFLAGS}" -tags testrunmain -o "$BINARY" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
 
 mkdir -p coverage/
 
@@ -107,7 +107,7 @@ echo "done sleeping"
 set +e
 
 SKYCOIN_INTEGRATION_TESTS=1 SKYCOIN_INTEGRATION_TEST_MODE=$MODE SKYCOIN_NODE_HOST=$HOST API_WALLET_DIR=$WALLET_DIR \
-    go test -count=1 ./src/api/integration/... $FAILFAST $UPDATE -timeout=30s $VERBOSE $RUN_TESTS
+    go test -mod=vendor -count=1 ./src/api/integration/... $FAILFAST $UPDATE -timeout=30s $VERBOSE $RUN_TESTS
 
 FAIL=$?
 

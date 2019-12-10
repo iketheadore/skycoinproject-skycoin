@@ -40,7 +40,7 @@ run-daemon:  ## Run skycoin with server daemon configuration. To add arguments, 
 	./run-daemon.sh ${ARGS}
 
 run-help: ## Show skycoin node help
-	@go run cmd/$(COIN)/$(COIN).go --help
+	@go -mod=vendor run cmd/$(COIN)/$(COIN).go --help
 
 run-integration-test-live: ## Run the skycoin node configured for live integration tests
 	./ci-scripts/run-live-integration-test-node.sh
@@ -62,22 +62,22 @@ run-integration-test-live-cover-disable-networking: ## Run the skycoin node conf
 
 test: ## Run tests for Skycoin
 	@mkdir -p coverage/
-	COIN=$(COIN) go test -coverpkg="github.com/$(COIN)/$(COIN)/..." -coverprofile=coverage/go-test-cmd.coverage.out -timeout=5m ./cmd/...
-	COIN=$(COIN) go test -coverpkg="github.com/$(COIN)/$(COIN)/..." -coverprofile=coverage/go-test-src.coverage.out -timeout=5m ./src/...
+	COIN=$(COIN) go test -mod=vendor -coverpkg="github.com/$(COIN)/$(COIN)/..." -coverprofile=coverage/go-test-cmd.coverage.out -timeout=5m ./cmd/...
+	COIN=$(COIN) go test -mod=vendor -coverpkg="github.com/$(COIN)/$(COIN)/..." -coverprofile=coverage/go-test-src.coverage.out -timeout=5m ./src/...
 
 test-386: ## Run tests for Skycoin with GOARCH=386
-	GOARCH=386 COIN=$(COIN) go test ./cmd/... -timeout=5m
-	GOARCH=386 COIN=$(COIN) go test ./src/... -timeout=5m
+	GOARCH=386 COIN=$(COIN) go test -mod=vendor ./cmd/... -timeout=5m
+	GOARCH=386 COIN=$(COIN) go test -mode=vendor ./src/... -timeout=5m
 
 test-amd64: ## Run tests for Skycoin with GOARCH=amd64
-	GOARCH=amd64 COIN=$(COIN) go test ./cmd/... -timeout=5m
-	GOARCH=amd64 COIN=$(COIN) go test ./src/... -timeout=5m
+	GOARCH=amd64 COIN=$(COIN) go test -mod=vendor ./cmd/... -timeout=5m
+	GOARCH=amd64 COIN=$(COIN) go test -mod=vendor ./src/... -timeout=5m
 
 lint: ## Run linters. Use make install-linters first.
 	vendorcheck ./...
 	golangci-lint run -c .golangci.yml ./...
 	@# The govet version in golangci-lint is out of date and has spurious warnings, run it separately
-	go vet -all ./...
+	go vet -mod=vendor -all ./...
 
 check-newcoin: newcoin ## Check that make newcoin succeeds and no templated files are changed.
 	@if [ "$(shell git diff ./cmd/skycoin/skycoin.go | wc -l | tr -d ' ')" != "0" ] ; then echo 'Changes detected after make newcoin' ; exit 2 ; fi
@@ -195,7 +195,7 @@ clean-coverage: ## Remove coverage output files
 	rm -rf ./coverage/
 
 newcoin: ## Rebuild cmd/$COIN/$COIN.go file from the template. Call like "make newcoin COIN=foo".
-	go run cmd/newcoin/newcoin.go createcoin --coin $(COIN)
+	go run -mod=vendor cmd/newcoin/newcoin.go createcoin --coin $(COIN)
 
 generate: ## Generate test interface mocks and struct encoders
 	go generate ./src/...
