@@ -9,7 +9,7 @@ matrix:
     - os: linux
       env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
       services:
-      - xvfb
+        - xvfb
     - os: osx
       # Do not start osx build for PR
       if: type != pull_request
@@ -19,10 +19,10 @@ matrix:
       #  Do not start windows build for PR
       if: type != pull_request
       env:
-      - GOX_OUTPUT='.gox_output'
+        - GOX_OUTPUT='.gox_output'
 env:
-  - GO111MODULE=on
   global:
+    - GO111MODULE: 'on'
     - ELECTRON_CACHE: $HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
     - BUILD_DIR: build
@@ -32,11 +32,11 @@ env:
 
 cache:
   directories:
-  - electron/node_modules
-  - electron/src/node_modules
-  - $HOME/.cache/electron
-  - $HOME/.cache/electron-builder
-  - $HOME/.npm/_prebuilds
+    - electron/node_modules
+    - electron/src/node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
 #   - src/gui/static/node_modules
 
 addons:
@@ -75,7 +75,7 @@ deploy:
   upload-dir: wallet
   acl: public_read
   region: $AWS_REGION
-  edge: true # opt in to dpl v2
+  edge: true  # opt in to dpl v2
   on:
     repo: SkycoinProject/skycoin
     tags: true
