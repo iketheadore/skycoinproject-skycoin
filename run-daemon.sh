@@ -10,6 +10,7 @@ pushd "$DIR" >/dev/null
 
 COMMIT=$(git rev-parse HEAD)
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
+GOFLAGS="-mod=vendor"
 GOLDFLAGS="-X main.Commit=${COMMIT} -X main.Branch=${BRANCH}"
 
 GORUNFLAGS=${GORUNFLAGS:-}

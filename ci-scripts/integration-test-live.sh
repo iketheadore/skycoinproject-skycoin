@@ -74,14 +74,14 @@ if [ ! $? -eq 0 ]; then
 fi
 
 echo "checking if integration tests compile"
-go test -mod=vendor ./src/api/integration/...
-go test -mod=vendor ./src/cli/integration/...
+go test ./src/api/integration/...
+go test ./src/cli/integration/...
 
 if [[ -z $TEST || $TEST = "api" ]]; then
 
 SKYCOIN_INTEGRATION_TESTS=1 SKYCOIN_INTEGRATION_TEST_MODE=$MODE SKYCOIN_NODE_HOST=$HOST \
 	LIVE_DISABLE_NETWORKING=$DISABLE_NETWORKING \
-    go test -mod=vendor -count=1 ./src/api/integration/... $FAILFAST $UPDATE -timeout=$TIMEOUT $VERBOSE $RUN_TESTS $TEST_LIVE_WALLET
+    go test -count=1 ./src/api/integration/... $FAILFAST $UPDATE -timeout=$TIMEOUT $VERBOSE $RUN_TESTS $TEST_LIVE_WALLET
 
 fi
 
@@ -89,6 +89,6 @@ if [[ -z $TEST || $TEST = "cli" ]]; then
 
 SKYCOIN_INTEGRATION_TESTS=1 SKYCOIN_INTEGRATION_TEST_MODE=$MODE RPC_ADDR=$RPC_ADDR \
 	SKYCOIN_NODE_HOST=$HOST USE_CSRF=$USE_CSRF HEADER_CHECK=$HEADER_CHECK LIVE_DISABLE_NETWORKING=$DISABLE_NETWORKING \
-    go test -mod=vendor -count=1 ./src/cli/integration/... $FAILFAST $UPDATE -timeout=$TIMEOUT $VERBOSE $RUN_TESTS $TEST_LIVE_WALLET
+    go test -count=1 ./src/cli/integration/... $FAILFAST $UPDATE -timeout=$TIMEOUT $VERBOSE $RUN_TESTS $TEST_LIVE_WALLET
 
 fi

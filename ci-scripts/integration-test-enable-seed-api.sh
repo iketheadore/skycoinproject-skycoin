@@ -52,8 +52,8 @@ CMDPKG=$(go list ./cmd/${COIN})
 COVERPKG=$(dirname $(dirname ${CMDPKG}))
 
 echo "checking if integration tests compile"
-go test -mod=vendor ./src/api/integration/...
-go test -mod=vendor ./src/cli/integration/...
+go test ./src/api/integration/...
+go test ./src/cli/integration/...
 
 DATA_DIR=$(mktemp -d -t ${COIN}-data-dir.XXXXXX)
 WALLET_DIR="${DATA_DIR}/wallets"
@@ -66,7 +66,7 @@ fi
 # Compile the skycoin node
 # We can't use "go run" because that creates two processes which doesn't allow us to kill it at the end
 echo "compiling $COIN with coverage"
-go test -mod=vendor -c -tags testrunmain -o "$BINARY" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
+go test -c -tags testrunmain -o "$BINARY" -coverpkg="${COVERPKG}/..." ./cmd/${COIN}/
 
 mkdir -p coverage/
 
@@ -100,7 +100,7 @@ set +e
 if [[ -z $TEST || $TEST = "api" ]]; then
 
 SKYCOIN_INTEGRATION_TESTS=1 SKYCOIN_INTEGRATION_TEST_MODE=$MODE SKYCOIN_NODE_HOST=$HOST WALLET_DIR=$WALLET_DIR \
-    go test -mod=vendor -count=1 ./src/api/integration/... -timeout=300s $VERBOSE $RUN_TESTS
+    go test -count=1 ./src/api/integration/... -timeout=300s $VERBOSE $RUN_TESTS
 
 API_FAIL=$?
 
