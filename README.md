@@ -107,11 +107,11 @@ scratch, to remedy the rough edges in the Bitcoin design.
 
 ## Installation
 
-Skycoin supports go1.10+.
+Skycoin supports go1.13+.
 
-### Go 1.10+ Installation and Setup
+### Go 1.13+ Installation and Setup
 
-[Golang 1.10+ Installation/Setup](./INSTALLATION.md)
+[Golang 1.13+ Installation/Setup](./INSTALLATION.md)
 
 ### Go get skycoin
 
