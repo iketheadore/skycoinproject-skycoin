@@ -28,8 +28,8 @@ var _ = func() int64 {
 }()
 
 var _ = func() bool {
-    testing.Init()
-    return true
+	testing.Init()
+	return true
 }()
 
 var u = flag.Bool("u", false, "update test wallet file in ./testdata")
