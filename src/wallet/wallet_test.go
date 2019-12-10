@@ -27,9 +27,14 @@ var _ = func() int64 {
 	return t
 }()
 
+var _ = func() bool {
+    testing.Init()
+    return true
+}()
+
 var u = flag.Bool("u", false, "update test wallet file in ./testdata")
 
-func TestMain(t *testing.T) {
+func init() {
 	flag.Parse()
 
 	// Change the scrypt N value in cryptoTable to make test faster, otherwise
