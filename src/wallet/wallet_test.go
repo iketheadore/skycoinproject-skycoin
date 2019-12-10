@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math/rand"
 	"testing"
 	"time"
@@ -17,11 +18,6 @@ import (
 	"github.com/SkycoinProject/skycoin/src/cipher/bip39"
 	"github.com/SkycoinProject/skycoin/src/cipher/bip44"
 	"github.com/SkycoinProject/skycoin/src/cipher/encrypt"
-	"github.com/SkycoinProject/skycoin/src/util/logging"
-)
-
-var (
-	log = logging.MustGetLogger("wallet_test")
 )
 
 // set rand seed.
@@ -33,7 +29,7 @@ var _ = func() int64 {
 
 var u = flag.Bool("u", false, "update test wallet file in ./testdata")
 
-func init() {
+func TestMain(t *testing.T) {
 	flag.Parse()
 
 	// Change the scrypt N value in cryptoTable to make test faster, otherwise
