@@ -67,7 +67,7 @@ test: ## Run tests for Skycoin
 
 test-386: ## Run tests for Skycoin with GOARCH=386
 	GOARCH=386 COIN=$(COIN) go test -mod=vendor ./cmd/... -timeout=5m
-	GOARCH=386 COIN=$(COIN) go test -mode=vendor ./src/... -timeout=5m
+	GOARCH=386 COIN=$(COIN) go test -mod=vendor ./src/... -timeout=5m
 
 test-amd64: ## Run tests for Skycoin with GOARCH=amd64
 	GOARCH=amd64 COIN=$(COIN) go test -mod=vendor ./cmd/... -timeout=5m
