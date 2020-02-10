@@ -6,8 +6,9 @@ set -e -o pipefail
 # make lint
 # make test-386
 # make test-amd64
-# make integration-tests-stable
-./ci-scripts/integration-test-stable.sh -r TestStableGetTransactionV2/page=19_limit=10 -v
+make integration-tests-stable
+git diff
+# ./ci-scripts/integration-test-stable.sh -r TestStableGetTransactionV2/page=19_limit=10 -v
 # make lint-ui
 # make build-ui-travis
 # make test-ui
