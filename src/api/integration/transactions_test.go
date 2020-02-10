@@ -977,10 +977,10 @@ func TestStableGetTransactionV2(t *testing.T) {
 					require.Equal(t, tc.err, err.Error())
 					return
 				}
+				fmt.Printf("name: %s, page info: %+v\n", tc.name, txns.PageInfo)
 				var expected api.TransactionsWithStatusV2
 				loadGoldenFile(t, tc.goldenFile, TestData{txns, &expected})
 				require.Equal(t, &expected, txns)
-				fmt.Printf("%+v\n", txns.PageInfo)
 			}
 		})
 	}
