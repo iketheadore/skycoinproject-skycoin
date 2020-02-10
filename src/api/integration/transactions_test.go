@@ -977,9 +977,9 @@ func TestStableGetTransactionV2(t *testing.T) {
 					require.Equal(t, tc.err, err.Error())
 					return
 				}
-				// var expected api.TransactionsWithStatusV2
-				// loadGoldenFile(t, tc.goldenFile, TestData{txns, &expected})
-				// require.Equal(t, &expected, txns)
+				var expected api.TransactionsWithStatusV2
+				loadGoldenFile(t, tc.goldenFile, TestData{txns, &expected})
+				require.Equal(t, &expected, txns)
 				fmt.Printf("%+v\n", txns.PageInfo)
 			}
 		})
