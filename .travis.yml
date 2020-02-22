@@ -18,11 +18,20 @@ matrix:
       - TEST_SUIT=integrations
       services:
       - xvfb
-    - os: osx
+    - os: osx-units
       # Do not start osx build for PR
       if: type != pull_request
       osx_image: xcode8
-      env: VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+      env:
+      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+      - TEST_SUIT=units
+    - os: osx-integrations
+      # Do not start osx build for PR
+      if: type != pull_request
+      osx_image: xcode8
+      env:
+      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+      - TEST_SUIT=integrations
     - os: windows
       #  Do not start windows build for PR
       if: type != pull_request
