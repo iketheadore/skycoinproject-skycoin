@@ -6,26 +6,30 @@ go:
 
 matrix:
   include:
-    - os: linux-uints
+    - os: linux
+      name: linux-unit-tests
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
       - TEST_SUIT=units
       services:
       - xvfb
-    - os: linux-integrations
+    - os: linux
+      name: linux-integration-tests
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
       - TEST_SUIT=integrations
       services:
       - xvfb
-    - os: osx-units
+    - os: osx
+      name: osx-unit-tests
       # Do not start osx build for PR
       if: type != pull_request
       osx_image: xcode8
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=units
-    - os: osx-integrations
+    - os: osx
+      name: osx-integration-tests
       # Do not start osx build for PR
       if: type != pull_request
       osx_image: xcode8
