@@ -17,7 +17,7 @@ env:
     - buildlib_dir: $build_dir/libskycoin
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
-    - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    - VERSION_UPGRADE_TEST_WAIT_TIMEOUT: 60s
   jobs:
     - TEST_SUIT=units
     - TEST_SUIT=integrations
@@ -25,7 +25,6 @@ env:
 
 osx_image: xcode8
 services: xvfb
-
 
 jobs:
   exclude:
