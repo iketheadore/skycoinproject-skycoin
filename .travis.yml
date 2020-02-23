@@ -1,4 +1,3 @@
-sudo: required
 dist: xenial
 language: go
 go:
@@ -37,14 +36,16 @@ jobs:
     stage: build
     os: linux
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    if: type != pull_request AND branch IN ["master", "develop"]
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    if: type != pull_request AND branch IN ["master", "develop"]
   - name: windows-wallet-build
     stage: build
     os: windows
-    if: type != pull_request
+    if: type != pull_request AND branch IN ["master", "develop"]
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
@@ -83,7 +84,7 @@ before_script:
 
 script:
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]] && [[ "$TEST_SUIT" != "" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
-  - if [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ ^(master|develop|feature/parallel-travis-test)$ || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ ^(master|develop)$ || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
   provider: s3
