@@ -18,20 +18,20 @@ os:
 - osx
 - windows
 
-env:
+# env:
 # - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=units
 # - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=integrations
-- TEST_SUIT=units
-- TEST_SUIT=integrations
 
 env:
+- TEST_SUIT=units
+- TEST_SUIT=integrations
   global:
-    - ELECTRON_CACHE: $HOME/.cache/electron
-    - ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
-    - BUILD_DIR: build
-    - BUILDLIB_DIR: $BUILD_DIR/libskycoin
-    - LIB_DIR: lib
-    - BUILD_UI_TRAVIS_DIR: $HOME/.skycoin-ui-travis
+    - electron_cache: $home/.cache/electron
+    - electron_builder_cache: $home/.cache/electron-builder
+    - build_dir: build
+    - buildlib_dir: $build_dir/libskycoin
+    - lib_dir: lib
+    - build_ui_travis_dir: $home/.skycoin-ui-travis
 
 jobs:
 #   include:
