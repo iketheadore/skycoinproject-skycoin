@@ -37,15 +37,18 @@ jobs:
   - name: linux-wallet-build
     stage: build
     os: linux
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
   - name: osx-wallet-build
     stage: build
     os: osx
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
   - name: windows-wallet-build
     stage: build
     os: windows
     if: type != pull_request
     env:
     - GOX_OUTPUT='.gox_output'
+      TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
 
 cache:
   directories:
