@@ -28,19 +28,19 @@ services: xvfb
 
 # Build wallet only when code is merged into master or develop branch
 stages:
-- name: test
-- name: build
-  os:
-  - linux
-  - osx
-  - windows
-  env: TEST_SUIT=""
-  if: type != pull_request
-#   branches:
-#     only:
-#     - master
-#     - develop
-#     - feature/parallel-travis-test
+  - name: test
+  - name: build
+    os:
+    - linux
+    - osx
+    - windows
+    env: TEST_SUIT=""
+    if: type != pull_request
+  #   branches:
+  #     only:
+  #     - master
+  #     - develop
+  #     - feature/parallel-travis-test
 
 jobs:
   exclude:
