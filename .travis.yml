@@ -65,8 +65,8 @@ cache:
   - src/gui/static/node_modules
 
 addons:
+  chrome: stable
   - if: TEST_SUIT != ""
-    chrome: stable
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
@@ -96,7 +96,6 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $AWS_BUCKET
-  skip_cleanup: true
   local_dir: electron/release
   upload-dir: wallet
   acl: public_read
