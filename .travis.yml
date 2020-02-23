@@ -17,6 +17,7 @@ env:
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
     - VERSION_UPGRADE_TEST_WAIT_TIMEOUT: 60s
+    - BUILD_ON_BR: ["master", "develop"]
   jobs:
     - TEST_SUIT=units
     - TEST_SUIT=integrations
@@ -36,16 +37,16 @@ jobs:
     stage: build
     os: linux
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN ["master", "develop"]
+    if: type != pull_request AND branch IN env(BUILD_ON_BR)
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN ["master", "develop"]
+    if: type != pull_request AND branch IN env(BUILD_ON_BR)
   - name: windows-wallet-build
     stage: build
     os: windows
-    if: type != pull_request AND branch IN ["master", "develop"]
+    if: type != pull_request AND branch IN env(BUILD_ON_BR)
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
