@@ -21,10 +21,7 @@ os:
 # env:
 # - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=units
 # - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=integrations
-
 env:
-- TEST_SUIT=units
-- TEST_SUIT=integrations
   global:
     - electron_cache: $home/.cache/electron
     - electron_builder_cache: $home/.cache/electron-builder
@@ -32,8 +29,11 @@ env:
     - buildlib_dir: $build_dir/libskycoin
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
+  jobs:
+    - TEST_SUIT=units
+    - TEST_SUIT=integrations
 
-jobs:
+# jobs:
 #   include:
 #   - os: linux
 #     stage: test
