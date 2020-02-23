@@ -4,23 +4,11 @@ language: go
 go:
   - "1.11.x"
 
-# os:
-# - linux
-# - osx
-    #   services:
-    #   - xvfb
-    #   Do not start osx build for PR
-    #   if: type != pull_request
-    #   osx_image: xcode8
-  # - windows
 os:
 - linux
 - osx
 - windows
 
-# env:
-# - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=units
-# - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s TEST_SUIT=integrations
 env:
   global:
     - electron_cache: $home/.cache/electron
@@ -48,15 +36,19 @@ jobs:
   - name: linux-wallet-build
     stage: build
     os: linux
+    env:
+    - TEST_SUIT=build
   - name: osx-wallet-build
     stage: build
     os: osx
+    - TEST_SUIT=build
   - name: windows-wallet-build
     stage: build
     os: windows
     if: type != pull_request
     env:
     - GOX_OUTPUT='.gox_output'
+    - TEST_SUIT=build
 
 cache:
   directories:
@@ -81,7 +73,7 @@ install:
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then nvm install 10.16.3 && nvm use 10.16.3; fi
-  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then make install-linters && make install-deps-ui; fi
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then make install-deps-ui; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ci-scripts/install-nodejs-win.sh; fi
 
 before_script:
@@ -90,7 +82,7 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then source $HOME/.bashrc; fi
 
 script:
-  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
+  - if [[ "$TRAVIS_OS_NAME" != "windows" ]] && [[ "$TEST_SUIT" != "" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
   - if [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ ^(master|develop)$ || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
