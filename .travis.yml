@@ -39,13 +39,13 @@ jobs:
     os: linux
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
-      only: BUILD_BRANCH
+      on: BUILD_BRANCH
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
-      only: BUILD_BRANCH
+      on: BUILD_BRANCH
   - name: windows-wallet-build
     stage: build
     os: windows
@@ -53,7 +53,7 @@ jobs:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
-      only: BUILD_BRANCH
+      on: BUILD_BRANCH
 
 cache:
   directories:
