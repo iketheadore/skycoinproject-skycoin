@@ -37,7 +37,7 @@ jobs:
   - os: osx
     stage: test
     name: osx-test
-    Do not start osx build for PR
+    # Do not start osx build for PR
     if: type != pull_request
     osx_image: xcode8
     env:
