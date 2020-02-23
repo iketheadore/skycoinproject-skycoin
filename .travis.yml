@@ -4,44 +4,44 @@ language: go
 go:
   - "1.11.x"
 
-matrix:
+os:
+- linux
+    services:
+    - xvfb
+- osx
+    # Do not start osx build for PR
+    if: type != pull_request
+    osx_image: xcode8
+- windows
+
+jobs:
   include:
-    - os: linux
-      name: linux-unit-tests
+    - name: linux-unit-tests
+      stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
       - TEST_SUIT=units
-      services:
-      - xvfb
-    - os: linux
-      name: linux-integration-tests
+    - name: linux-integration-tests
+      stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
       - TEST_SUIT=integrations
-      services:
-      - xvfb
-    - os: osx
-      name: osx-unit-tests
-      # Do not start osx build for PR
-      if: type != pull_request
-      osx_image: xcode8
+    - name: osx-unit-tests
+      stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=units
-    - os: osx
-      name: osx-integration-tests
-      # Do not start osx build for PR
-      if: type != pull_request
-      osx_image: xcode8
+    - name: osx-integration-tests
+      stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=integrations
     - os: windows
+      stage: build
       #  Do not start windows build for PR
       if: type != pull_request
       env:
       - GOX_OUTPUT='.gox_output'
-
 env:
   global:
     - ELECTRON_CACHE: $HOME/.cache/electron
@@ -58,7 +58,7 @@ cache:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
   - $HOME/.npm/_prebuilds
-#   - src/gui/static/node_modules
+  - src/gui/static/node_modules
 
 addons:
   chrome: stable
