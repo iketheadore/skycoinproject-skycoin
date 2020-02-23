@@ -6,7 +6,7 @@ make check-newcoin
 make build-ui-travis
 
 if [[ ${TEST_SUIT} == "units" ]]; then
-    echo "DO unit tests"
+    echo "Do unit tests"
     make install-linters
     make lint
     make lint-ui
@@ -14,7 +14,7 @@ if [[ ${TEST_SUIT} == "units" ]]; then
     make test-amd64
     make test-ui
 elif [[ ${TEST_SUIT} == "integrations" ]]; then
-    echo "DO integration tests"
+    echo "Do integration tests"
     make integration-tests-stable
     make test-ui-e2e
 fi
