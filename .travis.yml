@@ -33,35 +33,29 @@ jobs:
   - os: windows
     env: TEST_SUIT=integrations
   # Build stage jobs
-#   include:
-#   - name: linux-wallet-build
-#     stage: build
-#     os: linux
-#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-#     branches:
-#       only: BUILD_BRANCH
-#   - name: osx-wallet-build
-#     stage: build
-#     os: osx
-#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-#     branches:
-#       only: BUILD_BRANCH
-#   - name: windows-wallet-build
-#     stage: build
-#     os: windows
-#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-#     branches:
-#       only: BUILD_BRANCH
-#     env:
-#     - GOX_OUTPUT='.gox_output'
-#       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-
-jobs:
   include:
-  - stage: build
-    env: TEST_SUIT=""
+  - name: linux-wallet-build
+    stage: build
+    os: linux
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
       only: BUILD_BRANCH
+  - name: osx-wallet-build
+    stage: build
+    os: osx
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    branches:
+      only: BUILD_BRANCH
+  - name: windows-wallet-build
+    stage: build
+    os: windows
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    branches:
+      only: BUILD_BRANCH
+    env:
+    - GOX_OUTPUT='.gox_output'
+      TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+
 
 
 cache:
