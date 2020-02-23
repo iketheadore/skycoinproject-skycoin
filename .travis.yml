@@ -30,10 +30,11 @@ services: xvfb
 stages:
 - name: test
 - name: build
-  branches:
-    only:
-    - master
-    - develop
+  if: type != pull_request AND branch IN ["master", "develop"]
+#   branches:
+#     only:
+#     - master
+#     - develop
 
 jobs:
   exclude:
