@@ -6,12 +6,12 @@ go:
 
 os:
   - linux
-      services:
-      - xvfb
+    #   services:
+    #   - xvfb
   - osx
-      Do not start osx build for PR
-      if: type != pull_request
-      osx_image: xcode8
+    #   Do not start osx build for PR
+    #   if: type != pull_request
+    #   osx_image: xcode8
   # - windows
 
 jobs:
