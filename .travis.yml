@@ -30,8 +30,8 @@ env:
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
   jobs:
-    - TEST_SUIT=units
-    - TEST_SUIT=integrations
+    - TEST_SUIT=units VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    - TEST_SUIT=integrations VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
 
 
 osx_image: xcode8
@@ -75,6 +75,9 @@ jobs:
   - name: windows-wallet-build
     stage: build
     os: windows
+    if: type != pull_request
+    env:
+    - GOX_OUTPUT='.gox_output'
 
 #   include:
 #   - os: linux
