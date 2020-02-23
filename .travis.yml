@@ -26,9 +26,9 @@ osx_image: xcode8
 services: xvfb
 
 jobs:
-  stages:
-  - test
-  - build
+  include:
+  - stage: test
+  - stage: build
 
 # jobs:
 #   # Exclude tests for windows
