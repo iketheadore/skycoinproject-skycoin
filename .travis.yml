@@ -5,26 +5,27 @@ go:
   - "1.11.x"
 
 os:
-  - linux
+- linux
+- osx
     #   services:
     #   - xvfb
-  - osx
     #   Do not start osx build for PR
     #   if: type != pull_request
     #   osx_image: xcode8
   # - windows
 
+env:
+- VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+- TEST_SUIT=units
+
 jobs:
   include:
     - name: unit-tests
       stage: test
-      env:
-      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
-      - TEST_SUIT=units
-    - name: build
-      stage: build
-      env:
-      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    # - name: build
+    #   stage: build
+    #   env:
+    #   - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
 
     # - name: integration-tests
     #   stage: test
