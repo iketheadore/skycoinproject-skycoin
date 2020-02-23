@@ -35,11 +35,12 @@ stages:
   - osx
   - windows
   env: TEST_SUIT=""
-  if: type != pull_request AND branch IN ["master", "develop", "feature/parallel-travis-test"]
-#   branches:
-#     only:
-#     - master
-#     - develop
+  if: type != pull_request
+  branches:
+    only:
+    - master
+    - develop
+    - feature/parallel-travis-test
 
 jobs:
   exclude:
