@@ -15,10 +15,18 @@ go:
   # - windows
 
 env:
-- VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
-- TEST_SUIT=units
+  global:
+    - ELECTRON_CACHE: $HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
+    - BUILD_DIR: build
+    - BUILDLIB_DIR: $BUILD_DIR/libskycoin
+    - LIB_DIR: lib
+    - BUILD_UI_TRAVIS_DIR: $HOME/.skycoin-ui-travis
 
 jobs:
+  env:
+  - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+  - TEST_SUIT=units
   include:
   - os: linux
     name: linux-${TEST_SUIT}-test
@@ -26,7 +34,7 @@ jobs:
     - xvfb
   - os: osx
     name: osx-${TEST_SUIT}-test
-    # Do not start osx build for PR
+    Do not start osx build for PR
     if: type != pull_request
     osx_image: xcode8
   - os: windows
@@ -64,14 +72,6 @@ jobs:
     #   if: type != pull_request
     #   env:
     #   - GOX_OUTPUT='.gox_output'
-env:
-  global:
-    - ELECTRON_CACHE: $HOME/.cache/electron
-    - ELECTRON_BUILDER_CACHE: $HOME/.cache/electron-builder
-    - BUILD_DIR: build
-    - BUILDLIB_DIR: $BUILD_DIR/libskycoin
-    - LIB_DIR: lib
-    - BUILD_UI_TRAVIS_DIR: $HOME/.skycoin-ui-travis
 
 cache:
   directories:
