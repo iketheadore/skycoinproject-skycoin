@@ -36,19 +36,15 @@ jobs:
   - name: linux-wallet-build
     stage: build
     os: linux
-    env:
-    - TEST_SUIT=build
   - name: osx-wallet-build
     stage: build
     os: osx
-    - TEST_SUIT=build
   - name: windows-wallet-build
     stage: build
     os: windows
     if: type != pull_request
     env:
     - GOX_OUTPUT='.gox_output'
-    - TEST_SUIT=build
 
 cache:
   directories:
