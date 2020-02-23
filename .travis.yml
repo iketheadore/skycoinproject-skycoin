@@ -5,43 +5,49 @@ go:
   - "1.11.x"
 
 os:
-- linux
-    services:
-    - xvfb
-- osx
-    # Do not start osx build for PR
-    if: type != pull_request
-    osx_image: xcode8
-- windows
+  - linux
+      services:
+      - xvfb
+  - osx
+      Do not start osx build for PR
+      if: type != pull_request
+      osx_image: xcode8
+  # - windows
 
 jobs:
   include:
-    - name: linux-unit-tests
-      stage: test
-      env:
-      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
-      - TEST_SUIT=units
-    - name: linux-integration-tests
-      stage: test
-      env:
-      - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
-      - TEST_SUIT=integrations
-    - name: osx-unit-tests
+    - name: unit-tests
       stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=units
-    - name: osx-integration-tests
+    - name: integration-tests
       stage: test
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=integrations
-    - os: windows
-      stage: build
-      #  Do not start windows build for PR
-      if: type != pull_request
-      env:
-      - GOX_OUTPUT='.gox_output'
+    # - name: osx-unit-tests
+    #   stage: test
+    #   env:
+    #   - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    #   - TEST_SUIT=units
+    #   # Do not start osx build for PR
+    #   if: type != pull_request
+    #   osx_image: xcode8
+    # - name: osx-integration-tests
+    #   stage: test
+    #   env:
+    #   - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    #   - TEST_SUIT=integrations
+    #   # Do not start osx build for PR
+    #   if: type != pull_request
+    #   osx_image: xcode8
+    # - os: windows
+    #   stage: build
+    #   #  Do not start windows build for PR
+    #   if: type != pull_request
+    #   env:
+    #   - GOX_OUTPUT='.gox_output'
 env:
   global:
     - ELECTRON_CACHE: $HOME/.cache/electron
