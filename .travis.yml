@@ -26,9 +26,9 @@ env:
 osx_image: xcode8
 services: xvfb
 
-
 # Build wallet only when code is merged into master or develop branch
 stages:
+- name: test
 - name: build
   branches:
     only:
@@ -75,6 +75,7 @@ jobs:
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+
 
 
 cache:
