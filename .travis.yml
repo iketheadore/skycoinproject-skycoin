@@ -29,10 +29,10 @@ services: xvfb
 
 # Build wallet only when code is merged into master or develop branch
 branches:
+  if: stage = build
   only:
   - master
   - develop
-  if: stage = build
 
 jobs:
   exclude:
