@@ -37,9 +37,9 @@ services:
 - xvfb
   if: os = linux
 
-osx_image:
-- xcode8
-  if: os = osx AND  type = pull_request
+# osx_image:
+# - xcode8
+#   if: os = osx AND  type = pull_request
 
 
 # if: os = "osx"
