@@ -21,11 +21,16 @@ jobs:
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
       - TEST_SUIT=units
-    - name: integration-tests
-      stage: test
+    - name: build
+      stage: build
       env:
       - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
-      - TEST_SUIT=integrations
+
+    # - name: integration-tests
+    #   stage: test
+    #   env:
+    #   - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    #   - TEST_SUIT=integrations
     # - name: osx-unit-tests
     #   stage: test
     #   env:
