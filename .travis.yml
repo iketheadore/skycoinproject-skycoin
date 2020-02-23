@@ -32,7 +32,6 @@ branches:
   only:
   - master
   - develop
-  - feature/parallel-travis-test
   if: stage = build
 
 jobs:
