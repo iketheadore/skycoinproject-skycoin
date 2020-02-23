@@ -69,11 +69,11 @@ jobs:
 stages:
 - name: build
   env: TEST_SUIT=""
-#   branches:
-#     only:
-#     - master
-#     - develop
-#     - feature/paralle-travis-test
+  branches:
+    only:
+    - master
+    - develop
+    - feature/paralle-travis-test
 
 cache:
   directories:
