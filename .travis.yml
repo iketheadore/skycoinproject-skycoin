@@ -65,9 +65,8 @@ cache:
   - src/gui/static/node_modules
 
 addons:
-  chrome:
-  - stable
-    if: TEST_SUIT != ""
+  if: stage = test
+  chrome: stable
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update -qq; fi
