@@ -30,6 +30,11 @@ services: xvfb
 stages:
 - name: test
 - name: build
+  os:
+  - linux
+  - osx
+  - windows
+  env: TEST_SUIT=""
   if: type != pull_request AND branch IN ["master", "develop"]
 #   branches:
 #     only:
@@ -42,40 +47,40 @@ jobs:
     env: TEST_SUIT=units
   - os: windows
     env: TEST_SUIT=integrations
-  include:
-  - name: linux-wallet-build
-    stage: build
-    os: linux
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
-    # branches:
-    #   only:
-    #   - master
-    #   - develop
-    #   - feature/parallel-travis-test
-  - name: osx-wallet-build
-    stage: build
-    os: osx
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
-    # branches:
-    #   only:
-    #   - master
-    #   - develop
-    #   - feature/parallel-travis-test
-  - name: windows-wallet-build
-    stage: build
-    os: windows
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
-    # branches:
-    #   only:
-    #   - master
-    #   - develop
-    #   - feature/parallel-travis-test
-    env:
-    - GOX_OUTPUT='.gox_output'
-      TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#   include:
+#   - name: linux-wallet-build
+#     stage: build
+#     os: linux
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     # branches:
+#     #   only:
+#     #   - master
+#     #   - develop
+#     #   - feature/parallel-travis-test
+#   - name: osx-wallet-build
+#     stage: build
+#     os: osx
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     # branches:
+#     #   only:
+#     #   - master
+#     #   - develop
+#     #   - feature/parallel-travis-test
+#   - name: windows-wallet-build
+#     stage: build
+#     os: windows
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     # branches:
+#     #   only:
+#     #   - master
+#     #   - develop
+#     #   - feature/parallel-travis-test
+#     env:
+#     - GOX_OUTPUT='.gox_output'
+#       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
 
 
 
