@@ -65,7 +65,7 @@ cache:
   - src/gui/static/node_modules
 
 addons:
-  if: env(TEST_SUIT) != ""
+  if: TEST_SUIT != ""
   chrome: stable
 
 before_install:
