@@ -26,6 +26,13 @@ env:
 osx_image: xcode8
 services: xvfb
 
+branches:
+  only:
+  - namster
+  - develop
+  - feature/parallel-travis-test
+  if: stage = build
+
 jobs:
   exclude:
   - os: windows
@@ -38,30 +45,30 @@ jobs:
     os: linux
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     # if: type != pull_request AND branch IN BUILD_BRANCH
-    branches:
-      only:
-      - master
-      - develop
-      - feature/parallel-travis-test
+    # branches:
+    #   only:
+    #   - master
+    #   - develop
+    #   - feature/parallel-travis-test
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     # if: type != pull_request AND branch IN BUILD_BRANCH
-    branches:
-      only:
-      - master
-      - develop
-      - feature/parallel-travis-test
+    # branches:
+    #   only:
+    #   - master
+    #   - develop
+    #   - feature/parallel-travis-test
   - name: windows-wallet-build
     stage: build
     os: windows
     # if: type != pull_request AND branch IN BUILD_BRANCH
-    branches:
-      only:
-      - master
-      - develop
-      - feature/parallel-travis-test
+    # branches:
+    #   only:
+    #   - master
+    #   - develop
+    #   - feature/parallel-travis-test
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
