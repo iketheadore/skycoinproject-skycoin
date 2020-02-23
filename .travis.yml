@@ -39,6 +39,18 @@ jobs:
     env: TEST_SUIT=units
   - os: windows
     env: TEST_SUIT=integrations
+  include:
+  - os: linux
+    stage: test
+    services:
+    - xvfb
+  - os: osx
+    stage: test
+    # Do not start osx build for PR
+    if: type != pull_request
+    osx_image: xcode8
+
+
 #   include:
 #   - os: linux
 #     stage: test
