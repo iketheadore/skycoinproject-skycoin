@@ -56,11 +56,12 @@ jobs:
 #     - GOX_OUTPUT='.gox_output'
 #       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
 
-stage:
-- name: build
-  env: TEST_SUIT=""
-  branches:
-    only: BUILD_BRANCH
+jobs:
+  include:
+  - stage: build
+    env: TEST_SUIT=""
+    branches:
+      only: BUILD_BRANCH
 
 
 cache:
