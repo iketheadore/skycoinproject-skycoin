@@ -37,16 +37,16 @@ jobs:
     stage: build
     os: linux
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN env(BUILD_ON_BR)
+    if: type != pull_request AND branch IN BUILD_ON_BR
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN env(BUILD_ON_BR)
+    if: type != pull_request AND branch IN BUILD_ON_BR
   - name: windows-wallet-build
     stage: build
     os: windows
-    if: type != pull_request AND branch IN env(BUILD_ON_BR)
+    if: type != pull_request AND branch IN BUILD_ON_BR
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
