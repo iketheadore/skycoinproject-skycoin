@@ -20,29 +20,12 @@ env:
     - BUILD_BRANCH: ["master", "develop","feature/parallel-travis-test"]
   jobs:
     - TEST_SUIT=units
+      if: stage = test
     - TEST_SUIT=integrations
-
+      if: stage = test
 
 osx_image: xcode8
 services: xvfb
-
-# Build wallet only when code is merged into master or develop branch
-# stages:
-#   - name: test
-#     # jobs:
-#   - name: build
-#     # os:
-#     # - linux
-#     # - osx
-#     # - windows
-#     env: TEST_SUIT=""
-#     # if: type != pull_request
-  #   branches:
-  #     only:
-  #     - master
-  #     - develop
-  #     - feature/parallel-travis-test
-
 
 jobs:
   exclude:
@@ -54,25 +37,19 @@ jobs:
   - name: linux-wallet-build
     stage: build
     os: linux
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
+    # env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
       only: BUILD_BRANCH
   - name: osx-wallet-build
     stage: build
     os: osx
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
+    # env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
       only: BUILD_BRANCH
-    #   - master
-    #   - develop
-    #   - feature/parallel-travis-test
   - name: windows-wallet-build
     stage: build
     os: windows
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    # if: type != pull_request AND branch IN BUILD_BRANCH
+    # env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     branches:
       only: BUILD_BRANCH
     env:
