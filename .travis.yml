@@ -59,6 +59,7 @@ cache:
   - src/gui/static/node_modules
 
 addons:
+  if: env(TEST_SUIT) != ""
   chrome: stable
 
 before_install:
@@ -82,7 +83,7 @@ before_script:
 
 script:
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]] && [[ "$TEST_SUIT" != "" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
-  - if [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ ^(master|develop)$ || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ ^(master|develop|feature/parallel-travis-test)$ || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
   provider: s3
