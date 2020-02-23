@@ -19,9 +19,9 @@ env:
 - TEST_SUIT=units
 
 jobs:
-  include:
-    - name: unit-tests
-      stage: test
+#   include:
+#     - name: unit-tests
+#       stage: test
     # - name: build
     #   stage: build
     #   env:
