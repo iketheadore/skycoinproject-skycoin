@@ -17,7 +17,7 @@ env:
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
     - VERSION_UPGRADE_TEST_WAIT_TIMEOUT: 60s
-    - BUILD_BRANCH: "[master,develop,feature/parallel-travis-test]"
+    # - BUILD_BRANCH: "[master,develop,feature/parallel-travis-test]"
   jobs:
     - TEST_SUIT=units
     - TEST_SUIT=integrations
@@ -32,24 +32,48 @@ jobs:
     env: TEST_SUIT=units
   - os: windows
     env: TEST_SUIT=integrations
-  include:
-  - name: linux-wallet-build
-    stage: build
-    os: linux
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN BUILD_BRANCH
-  - name: osx-wallet-build
-    stage: build
-    os: osx
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: type != pull_request AND branch IN BUILD_BRANCH
-  - name: windows-wallet-build
-    stage: build
-    os: windows
-    if: type != pull_request AND branch IN BUILD_BRANCH
-    env:
-    - GOX_OUTPUT='.gox_output'
-      TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#   include:
+#   - name: linux-wallet-build
+#     stage: build
+#     os: linux
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     branches:
+#       only:
+#       - master
+#       - develop
+#       - feature/parallel-travis-test
+#   - name: osx-wallet-build
+#     stage: build
+#     os: osx
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     branches:
+#       only:
+#       - master
+#       - develop
+#       - feature/parallel-travis-test
+#   - name: windows-wallet-build
+#     stage: build
+#     os: windows
+#     # if: type != pull_request AND branch IN BUILD_BRANCH
+#     branches:
+#       only:
+#       - master
+#       - develop
+#       - feature/parallel-travis-test
+#     env:
+#     - GOX_OUTPUT='.gox_output'
+#       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+
+stages:
+- name: build
+  env: TEST_SUIT=""
+#   branches:
+#     only:
+#     - master
+#     - develop
+#     - feature/paralle-travis-test
 
 cache:
   directories:
