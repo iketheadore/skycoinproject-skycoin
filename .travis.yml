@@ -24,20 +24,29 @@ env:
     - BUILD_UI_TRAVIS_DIR: $HOME/.skycoin-ui-travis
 
 jobs:
-  env:
-  - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
-  - TEST_SUIT=units
   include:
   - os: linux
-    name: linux-${TEST_SUIT}-test
+    stage: test
+    name: linux-test
     services:
     - xvfb
+    env:
+    - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=45s
+    - TEST_SUIT=units
+    - TEST_SUIT=integrations
   - os: osx
-    name: osx-${TEST_SUIT}-test
+    stage: test
+    name: osx-test
     Do not start osx build for PR
     if: type != pull_request
     osx_image: xcode8
+    env:
+    - VERSION_UPGRADE_TEST_WAIT_TIMEOUT=60s
+    - TEST_SUIT=units
+    - TEST_SUIT=integrations
+
   - os: windows
+    stage: build-and-deploy
 #     - name: unit-tests
 #       stage: test
     # - name: build
