@@ -65,6 +65,10 @@ jobs:
     env: TEST_SUIT=units
   - os: windows
     env: TEST_SUIT=integrations
+  include:
+  - name: wallet-build
+    stage: build
+
 #   include:
 #   - os: linux
 #     stage: test
