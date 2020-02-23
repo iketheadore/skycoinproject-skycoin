@@ -26,13 +26,14 @@ env:
 osx_image: xcode8
 services: xvfb
 
+
+# Build wallet only when code is merged into master or develop branch
 branches:
   only:
-  - namster
+  - master
   - develop
   - feature/parallel-travis-test
   if: stage = build
-  env: TEST_SUIT=""
 
 jobs:
   exclude:
@@ -44,7 +45,7 @@ jobs:
   - name: linux-wallet-build
     stage: build
     os: linux
-    # env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     # if: type != pull_request AND branch IN BUILD_BRANCH
     # branches:
     #   only:
@@ -54,7 +55,7 @@ jobs:
   - name: osx-wallet-build
     stage: build
     os: osx
-    # env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     # if: type != pull_request AND branch IN BUILD_BRANCH
     # branches:
     #   only:
@@ -64,6 +65,7 @@ jobs:
   - name: windows-wallet-build
     stage: build
     os: windows
+    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     # if: type != pull_request AND branch IN BUILD_BRANCH
     # branches:
     #   only:
