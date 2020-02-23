@@ -49,14 +49,11 @@ jobs:
   - name: windows-wallet-build
     stage: build
     os: windows
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    branches:
-      only: BUILD_BRANCH
     env:
     - GOX_OUTPUT='.gox_output'
       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-
-
+    branches:
+      only: BUILD_BRANCH
 
 cache:
   directories:
