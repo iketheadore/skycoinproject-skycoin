@@ -19,10 +19,9 @@ env:
     - VERSION_UPGRADE_TEST_WAIT_TIMEOUT: 60s
     - BUILD_BRANCH: ["master", "develop","feature/parallel-travis-test"]
   jobs:
+    if: stage = test
     - TEST_SUIT=units
-      if: stage = test
     - TEST_SUIT=integrations
-      if: stage = test
 
 osx_image: xcode8
 services: xvfb
