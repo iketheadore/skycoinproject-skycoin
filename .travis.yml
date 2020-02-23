@@ -33,11 +33,11 @@ env:
     - TEST_SUIT=units
     - TEST_SUIT=integrations
 
-if: os == linux
+if: os = "linux"
   services:
   - xvfb
 
-if: os == osx
+if: os = "osx"
   # Do not start osx build for PR
   if: type == pull_request
   osx_image: xcode8
