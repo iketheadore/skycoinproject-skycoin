@@ -28,7 +28,8 @@ services: xvfb
 
 
 # Build wallet only when code is merged into master or develop branch
-stage: build
+stages:
+- name: build
   branches:
     only:
     - master
