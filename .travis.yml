@@ -4,9 +4,9 @@ language: go
 go:
   - "1.11.x"
 
-os:
-- linux
-- osx
+# os:
+# - linux
+# - osx
     #   services:
     #   - xvfb
     #   Do not start osx build for PR
@@ -19,7 +19,17 @@ env:
 - TEST_SUIT=units
 
 jobs:
-#   include:
+  include:
+  - os: linux
+    name: linux-${TEST_SUIT}-test
+    services:
+    - xvfb
+  - os: osx
+    name: osx-${TEST_SUIT}-test
+    # Do not start osx build for PR
+    if: type != pull_request
+    osx_image: xcode8
+  - os: windows
 #     - name: unit-tests
 #       stage: test
     # - name: build
