@@ -34,20 +34,20 @@ jobs:
     env: TEST_SUIT=integrations
   # Build stage jobs
   include:
-#   - name: linux-wallet-build
-#     stage: build
-#     os: linux
-#     if: branch =~ env(BUILD_BRANCH)
+  - name: linux-wallet-build
+    stage: build
+    os: linux
+    if: branch =~ env(BUILD_BRANCH)
   - name: osx-wallet-build
     stage: build
     os: osx
     if: branch =~ env(BUILD_BRANCH)
-#   - name: windows-wallet-build
-#     stage: build
-#     os: windows
-#     env:
-#     - GOX_OUTPUT='.gox_output'
-#     if: branch =~ env(BUILD_BRANCH)
+  - name: windows-wallet-build
+    stage: build
+    os: windows
+    env:
+    - GOX_OUTPUT='.gox_output'
+    if: branch =~ env(BUILD_BRANCH)
 
 cache:
   directories:
