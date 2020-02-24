@@ -66,7 +66,7 @@ before_install:
 
 install:
   # Install gox
-  - if [[ $TRAVIS_BUILD_STAGE_NAME == "build" ]]; then go get github.com/mitchellh/gox; fi
+  - if [[ $TRAVIS_BUILD_STAGE_NAME == "Build" ]]; then go get github.com/mitchellh/gox; fi
   # Install dependences for building wallet
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
@@ -80,8 +80,8 @@ before_script:
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then source $HOME/.bashrc; fi
 
 script:
-  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "test" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
-  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "build" ]] && [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ $BUILD_BRANCH || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Test" ]]; then ./ci-scripts/lint-and-test.sh $TEST_SUIT; fi
+  - if [[ "$TRAVIS_BUILD_STAGE_NAME" == "Build" ]] && [[ "$TRAVIS_PULL_REQUEST" == false ]] && [[ "$TRAVIS_BRANCH" =~ $BUILD_BRANCH || -n  "$TRAVIS_TAG" ]]; then ./ci-scripts/build-wallet.sh; fi
 
 deploy:
   provider: s3
