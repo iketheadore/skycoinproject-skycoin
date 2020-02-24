@@ -2,6 +2,7 @@
 
 set -e -o pipefail
 
+make install-deps-ui
 make check-newcoin
 make build-ui-travis
 

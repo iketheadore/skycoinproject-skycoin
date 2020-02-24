@@ -34,23 +34,23 @@ jobs:
     env: TEST_SUIT=integrations
   # Build stage jobs
   include:
-  - name: linux-wallet-build
-    stage: build
-    os: linux
-    env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: branch =~ env(BUILD_BRANCH)
+#   - name: linux-wallet-build
+#     stage: build
+#     os: linux
+#     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     if: branch =~ env(BUILD_BRANCH)
   - name: osx-wallet-build
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
     if: branch =~ env(BUILD_BRANCH)
-  - name: windows-wallet-build
-    stage: build
-    os: windows
-    env:
-    - GOX_OUTPUT='.gox_output'
-      TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: branch =~ env(BUILD_BRANCH)
+#   - name: windows-wallet-build
+#     stage: build
+#     os: windows
+#     env:
+#     - GOX_OUTPUT='.gox_output'
+#       TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
+#     if: branch =~ env(BUILD_BRANCH)
 
 cache:
   directories:
@@ -70,12 +70,12 @@ before_install:
 install:
   # Install gox
   - go get github.com/mitchellh/gox
+    if: stage = build
   # Install dependences for building wallet
   - if [[ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_PULL_REQUEST" == false ]]; then sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils libudev-dev libusb-1.0-0-dev; fi
   - if [[ ! -d $GOPATH/src/github.com/SkycoinProject/skycoin ]]; then mkdir -p $GOPATH/src/github.com/SkycoinProject; ln -s $TRAVIS_BUILD_DIR $GOPATH/src/github.com/SkycoinProject/skycoin; fi
   - cd $GOPATH/src/github.com/SkycoinProject/skycoin
   - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then nvm install 10.16.3 && nvm use 10.16.3; fi
-  - if [[ "$TRAVIS_OS_NAME" != "windows" ]]; then make install-deps-ui; fi
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then ./ci-scripts/install-nodejs-win.sh; fi
 
 before_script:
