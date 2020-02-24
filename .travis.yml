@@ -17,7 +17,7 @@ env:
     - lib_dir: lib
     - build_ui_travis_dir: $home/.skycoin-ui-travis
     - VERSION_UPGRADE_TEST_WAIT_TIMEOUT: 60s
-    - BUILD_BRANCH: "(master, develop, feature/parallel-travis-test)"
+    - BUILD_BRANCH: '"^(master|develop|feature/parallel-travis-test)$"'
   jobs:
     - TEST_SUIT=units
     - TEST_SUIT=integrations
@@ -41,7 +41,7 @@ jobs:
   - name: osx-wallet-build
     stage: build
     os: osx
-    if: branch IN BUILD_BRANCH
+    if: branch =~ env(BUILD_BRANCH)
 #   - name: windows-wallet-build
 #     stage: build
 #     os: windows
