@@ -43,7 +43,7 @@ jobs:
     stage: build
     os: osx
     env: TEST_SUIT="" # unset TEST_SUIT so that build won't do tests
-    if: branch =~ env(BUILD_BRANCH)
+    if: branch =~ $BUILD_BRANCH
   - name: windows-wallet-build
     stage: build
     os: windows
