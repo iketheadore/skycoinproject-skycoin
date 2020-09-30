@@ -14,9 +14,15 @@ import (
 
 	"github.com/SkycoinProject/skycoin/src/cipher"
 	"github.com/SkycoinProject/skycoin/src/coin"
+	"github.com/SkycoinProject/skycoin/src/params"
 	"github.com/SkycoinProject/skycoin/src/testutil"
 	"github.com/SkycoinProject/skycoin/src/util/fee"
 )
+
+func TestMain(m *testing.M) {
+	// pin the burn factor to 10
+	params.UserVerifyTxn.BurnFactor = 10
+}
 
 func TestCreate(t *testing.T) {
 	headTime := uint64(time.Now().UTC().Unix())
