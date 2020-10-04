@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add `calculated_hours` to `/api/v1/uxout` and `/api/v1/address_uxouts`.
 - Update DB version only when DB structure is changed.
 - Add go version of go1.14 support
+- Change `coinhours` burn factor to 1 percent.
 
 ### Removed
 
